@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "João Silva",
+    "company": "Empresa A",
+    "email": "joao.silva@empresa.com",
+    "source": "Web",
+    "score": 75,
+    "status": "new"
+  },
+  {
+    "id": "2",
+    "name": "Maria Souza",
+    "company": "Empresa B",
+    "email": "maria.souza@empresa.com",
+    "source": "Referral",
+    "score": 90,
+    "status": "contacted"
+  }
+]
