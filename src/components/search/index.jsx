@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function SearchFilterSort({ onSearch, onFilter, onSort }) {
+export default function SearchFilterSort({ onSearch, onFilter, onSort, onCreateNewLead }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   
@@ -15,24 +15,24 @@ export default function SearchFilterSort({ onSearch, onFilter, onSort }) {
   };
 
   const handleSort = () => {
-    onSort(); // sort por score desc
+    onSort();
   };
 
   return (
-    <div className="flex items-center gap-4 mb-4">
+    <div className="flex items-center gap-4 mb-6 font-sans">
       <input
         type="text"
-        placeholder="Buscar por nome ou empresa"
+        placeholder="Search by name or company"
         value={searchTerm}
         onChange={handleSearchChange}
-        className="border border-gray-300 rounded px-3 py-1 flex-1"
+        className="border border-green-300 rounded px-4 py-2 flex-1 focus:outline-none focus:ring-2 focus:ring-green-600"
       />
       <select
         value={statusFilter}
         onChange={handleFilterChange}
-        className="border border-gray-300 rounded px-3 py-1"
+        className="border border-green-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
       >
-        <option value="">Todos os status</option>
+        <option value="">All statuses</option>
         <option value="new">New</option>
         <option value="contacted">Contacted</option>
         <option value="converted">Converted</option>
@@ -40,9 +40,15 @@ export default function SearchFilterSort({ onSearch, onFilter, onSort }) {
       </select>
       <button
         onClick={handleSort}
-        className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
+        className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition"
       >
         Sort by Score ↓
+      </button>
+      <button
+        onClick={onCreateNewLead}
+        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition whitespace-nowrap"
+      >
+        Create New Lead
       </button>
     </div>
   );

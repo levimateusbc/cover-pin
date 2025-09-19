@@ -6,6 +6,7 @@ import OpportunitiesTable from "./components/opportunities";
 import Table from "./components/table";
 import NewLeadForm from "./components/form";
 import Header from "./components/header";
+import NewLeadFormModal from "./components/form";
 
 function App() {
   const [leads, setLeads] = useState([]);
@@ -15,6 +16,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentView, setCurrentView] = useState("leads");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [filterStatus, setFilterStatus] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -90,37 +92,24 @@ function App() {
   };
 
   return (
-    <div className="p-6 min-h-screen bg-neutralBg font-sans text-neutralText">
+    <div className="p-0 min-h-screen bg-neutralBg text-neutralText">
       <Header currentView={currentView} setCurrentView={setCurrentView} />
 
       {loading && (
         <div className="text-center text-neutralGray">Loading leads...</div>
       )}
 
-      {error && <div className="text-center text-error font-semibold">{error}</div>}
+      {error && (
+        <div className="text-center text-error font-semibold">{error}</div>
+      )}
 
       {currentView === "leads" && (
-        <>
-          <div className="flex justify-between items-center mb-4">
-            <button
-              onClick={() => setCurrentView("new-lead")}
-              className="bg-primary text-white px-4 py-2 rounded border border-primary hover:bg-secondary transition-colors"
-            >
-              + Novo Lead
-            </button>
-
-            <button
-              onClick={() => setCurrentView("opportunities")}
-              className="text-primary underline hover:text-secondary transition-colors"
-            >
-              Ver Oportunidades
-            </button>
-          </div>
-
+        <div className="px-6 pb-6">
           <SearchFilterSort
             onSearch={handleSearch}
             onFilter={handleFilter}
             onSort={handleSort}
+            onCreateNewLead={() => setIsModalOpen(true)}
           />
 
           <Table leads={filteredLeads} onSelectLead={handleSelectLead} />
@@ -133,7 +122,7 @@ function App() {
               onConvert={handleConvertLead}
             />
           )}
-        </>
+        </div>
       )}
 
       {currentView === "opportunities" && (
@@ -161,6 +150,16 @@ function App() {
             onCancel={() => setCurrentView("leads")}
           />
         </>
+      )}
+      {isModalOpen && (
+        <NewLeadFormModal
+          isOpen={isModalOpen}
+          onAdd={(newLead) => {
+            handleAddNewLead(newLead);
+            setIsModalOpen(false);
+          }}
+          onCancel={() => setIsModalOpen(false)}
+        />
       )}
     </div>
   );

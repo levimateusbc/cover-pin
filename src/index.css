@@ -1,9 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource/poppins";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@tailwind utilities;
+
+@layer utilities {
+  .btn {
+    @apply bg-green-800 text-white font-semibold py-2 px-4 rounded;
+  }
 }
