@@ -1,110 +1,12 @@
-// import { useState } from "react";
-// import Button from "./components/button";
-// import Table from "./components/table";
-// const initialLeads = [
-//   {
-//     id: 1,
-//     nome: "Ana Silva",
-//     email: "ana@email.com",
-//     telefone: "123-456-7890",
-//   },
-//   {
-//     id: 2,
-//     nome: "Bruno Costa",
-//     email: "bruno@email.com",
-//     telefone: "987-654-3210",
-//   },
-// ];
+import { useEffect, useState } from "react";
+import leadsData from "./leads.json";
+import SearchFilterSort from "./components/search";
+import LeadDetailPanel from "./components/details";
+import OpportunitiesTable from "./components/opportunities";
+import Table from "./components/table";
+import NewLeadForm from "./components/form";
+import Header from "./components/header";
 
-// export default function App() {
-//   const [leads, setLeads] = useState(initialLeads);
-//   const [modalOpen, setModalOpen] = useState(false);
-//   const [form, setForm] = useState({ nome: "", email: "", telefone: "" });
-//   //  TODO: call on button
-//   function abrirModal() {
-//     setForm({ nome: "", email: "", telefone: "" });
-//     setModalOpen(true);
-//   }
-
-//   function fecharModal() {
-//     setModalOpen(false);
-//   }
-
-//   function handleChange(e) {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   }
-
-//   function adicionarLead(e) {
-//     e.preventDefault();
-//     if (!form.nome || !form.email) return alert("Preencha nome e email");
-//     setLeads([...leads, { id: Date.now(), ...form }]);
-//     fecharModal();
-//   }
-
-//   return (
-//     <div className="min-h-screen bg-sky-700 p-8 font-sans">
-//       <header className="mb-6 flex justify-between items-center">
-//         <h1 className="text-2xl font-bold text-gray-800">Dashboard de Leads</h1>
-//         <Button onClick={() => abrirModal()} />
-//       </header>
-//       {/* Form */}
-//       <Table leadProp={leads}/>
-//       {/* Modal */}
-//       {modalOpen && (
-//         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-//           <div className="bg-white rounded-lg shadow-lg w-96 p-6 relative">
-//             <button
-//               onClick={fecharModal}
-//               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-//               aria-label="Fechar modal"
-//             >
-//               ✕
-//             </button>
-//             <h2 className="text-xl font-semibold mb-4">Adicionar Lead</h2>
-//             <form onSubmit={adicionarLead} className="space-y-4">
-//               <input
-//                 name="nome"
-//                 placeholder="Nome"
-//                 value={form.nome}
-//                 onChange={handleChange}
-//                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//                 required
-//               />
-//               <input
-//                 name="email"
-//                 type="email"
-//                 placeholder="Email"
-//                 value={form.email}
-//                 onChange={handleChange}
-//                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//                 required
-//               />
-//               <input
-//                 name="telefone"
-//                 placeholder="Telefone"
-//                 value={form.telefone}
-//                 onChange={handleChange}
-//                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//               />
-//               <button
-//                 type="submit"
-//                 className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-//               >
-//                 Adicionar
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-import  { useEffect, useState } from 'react';
-import leadsData from './leads.json';
-import SearchFilterSort from './components/search';
-import LeadDetailPanel from './components/details';
-import OpportunitiesTable from './components/opportunities';
-import Table from './components/table';
 function App() {
   const [leads, setLeads] = useState([]);
   const [filteredLeads, setFilteredLeads] = useState([]);
@@ -112,40 +14,39 @@ function App() {
   const [opportunities, setOpportunities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentView, setCurrentView] = useState("leads");
 
-  // filtros/sort estado
-  const [filterStatus, setFilterStatus] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [sortByScoreDesc, setSortByScoreDesc] = useState(false);
 
   useEffect(() => {
-    // simula latência
     setTimeout(() => {
       try {
         setLeads(leadsData);
         setFilteredLeads(leadsData);
         setLoading(false);
       } catch (err) {
-        setError('Erro ao carregar os leads.');
+        setError("Failed to load leads.", err);
         setLoading(false);
-        console.log(err)
       }
     }, 500);
   }, []);
 
-  // efeitos de filtragem / busca / ordenação
   useEffect(() => {
     let temp = [...leads];
 
     if (searchTerm) {
-      temp = temp.filter(l =>
-        l.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        l.company.toLowerCase().includes(searchTerm.toLowerCase())
+      const term = searchTerm.toLowerCase();
+      temp = temp.filter(
+        (lead) =>
+          lead.name.toLowerCase().includes(term) ||
+          lead.company.toLowerCase().includes(term)
       );
     }
 
     if (filterStatus) {
-      temp = temp.filter(l => l.status === filterStatus);
+      temp = temp.filter((lead) => lead.status === filterStatus);
     }
 
     if (sortByScoreDesc) {
@@ -157,51 +58,72 @@ function App() {
 
   const handleSearch = (term) => setSearchTerm(term);
   const handleFilter = (status) => setFilterStatus(status);
-  const handleSort = () => setSortByScoreDesc(prev => !prev);
-
+  const handleSort = () => setSortByScoreDesc((prev) => !prev);
   const handleSelectLead = (lead) => setSelectedLead(lead);
-
   const handleClosePanel = () => setSelectedLead(null);
 
   const handleUpdateLead = (updatedLead) => {
-    setLeads(prev => prev.map(l => l.id === updatedLead.id ? updatedLead : l));
+    setLeads((prev) =>
+      prev.map((lead) => (lead.id === updatedLead.id ? updatedLead : lead))
+    );
     setSelectedLead(updatedLead);
   };
 
-  const handleConvertLead = (leadToConvert) => {
+  const handleConvertLead = (lead) => {
     const newOpportunity = {
       id: `${opportunities.length + 1}`,
-      name: leadToConvert.name,
-      stage: 'New Opportunity',
+      name: lead.name,
+      stage: "New Opportunity",
       amount: null,
-      accountName: leadToConvert.company
+      accountName: lead.company,
     };
-    setOpportunities(prev => [...prev, newOpportunity]);
-    // opcional: marcar lead status como "converted"
-    handleUpdateLead({ ...leadToConvert, status: 'converted' });
-    // fechar painel
+
+    setOpportunities((prev) => [...prev, newOpportunity]);
+
+    handleUpdateLead({ ...lead, status: "converted" });
     handleClosePanel();
   };
 
+  const handleAddNewLead = (newLead) => {
+    setLeads((prev) => [...prev, newLead]);
+    setCurrentView("leads");
+  };
+
   return (
-    <div className="p-6 min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">Mini Seller Console</h1>
+    <div className="p-6 min-h-screen bg-neutralBg font-sans text-neutralText">
+      <Header currentView={currentView} setCurrentView={setCurrentView} />
 
-      {loading && <div className="text-center text-gray-500">Carregando leads...</div>}
-      {error && <div className="text-center text-red-500">{error}</div>}
+      {loading && (
+        <div className="text-center text-neutralGray">Loading leads...</div>
+      )}
 
-      {!loading && !error && (
+      {error && <div className="text-center text-error font-semibold">{error}</div>}
+
+      {currentView === "leads" && (
         <>
+          <div className="flex justify-between items-center mb-4">
+            <button
+              onClick={() => setCurrentView("new-lead")}
+              className="bg-primary text-white px-4 py-2 rounded border border-primary hover:bg-secondary transition-colors"
+            >
+              + Novo Lead
+            </button>
+
+            <button
+              onClick={() => setCurrentView("opportunities")}
+              className="text-primary underline hover:text-secondary transition-colors"
+            >
+              Ver Oportunidades
+            </button>
+          </div>
+
           <SearchFilterSort
             onSearch={handleSearch}
             onFilter={handleFilter}
             onSort={handleSort}
           />
 
-          <Table
-            leads={filteredLeads}
-            onSelectLead={handleSelectLead}
-          />
+          <Table leads={filteredLeads} onSelectLead={handleSelectLead} />
 
           {selectedLead && (
             <LeadDetailPanel
@@ -211,8 +133,33 @@ function App() {
               onConvert={handleConvertLead}
             />
           )}
+        </>
+      )}
 
+      {currentView === "opportunities" && (
+        <>
+          <button
+            onClick={() => setCurrentView("leads")}
+            className="text-primary underline mb-4 hover:text-secondary transition-colors"
+          >
+            ← Voltar para Leads
+          </button>
           <OpportunitiesTable opportunities={opportunities} />
+        </>
+      )}
+
+      {currentView === "new-lead" && (
+        <>
+          <button
+            onClick={() => setCurrentView("leads")}
+            className="text-primary underline mb-4 hover:text-secondary transition-colors"
+          >
+            ← Voltar para Leads
+          </button>
+          <NewLeadForm
+            onAdd={handleAddNewLead}
+            onCancel={() => setCurrentView("leads")}
+          />
         </>
       )}
     </div>
