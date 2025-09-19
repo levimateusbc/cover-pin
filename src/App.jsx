@@ -7,6 +7,7 @@ import Table from "./components/table";
 import NewLeadForm from "./components/form";
 import Header from "./components/header";
 import NewLeadFormModal from "./components/form";
+import Button from "./components/button";
 
 function App() {
   const [leads, setLeads] = useState([]);
@@ -126,25 +127,16 @@ function App() {
       )}
 
       {currentView === "opportunities" && (
-        <>
-          <button
-            onClick={() => setCurrentView("leads")}
-            className="text-primary underline mb-4 hover:text-secondary transition-colors"
-          >
-            ← Voltar para Leads
-          </button>
+        <div className="px-6 pb-6">
+          <Button label="Back" onClick={() => setCurrentView("leads")} />
           <OpportunitiesTable opportunities={opportunities} />
-        </>
+        </div>
       )}
 
       {currentView === "new-lead" && (
         <>
-          <button
-            onClick={() => setCurrentView("leads")}
-            className="text-primary underline mb-4 hover:text-secondary transition-colors"
-          >
-            ← Voltar para Leads
-          </button>
+        {/* TODO: Why doesn't change anything */}
+          <Button label="Back" onClick={() => setCurrentView("leads")} />
           <NewLeadForm
             onAdd={handleAddNewLead}
             onCancel={() => setCurrentView("leads")}

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { isValidEmail } from '../../utils/emailValidation';
+import Input from '../input';
+import Button from '../button';
 
 export default function NewLeadForm({ onAdd, onCancel }) {
   const [name, setName] = useState('');
@@ -13,12 +15,12 @@ export default function NewLeadForm({ onAdd, onCancel }) {
 
   const handleSubmit = () => {
     if (!name || !company || !email) {
-      setError('Preencha todos os campos obrigatórios.');
+      setError('Fill in all required fields.');
       return;
     }
 
     if (!isValidEmail(email)) {
-      setError('Email inválido');
+      setError('Invalid email');
       return;
     }
 
@@ -42,42 +44,12 @@ export default function NewLeadForm({ onAdd, onCancel }) {
       {error && <div className="text-red-600 mb-4">{error}</div>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <input
-          type="text"
-          placeholder="Nome *"
-          className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Company *"
-          className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
-          value={company}
-          onChange={e => setCompany(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email *"
-          className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Fonte"
-          className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
-          value={source}
-          onChange={e => setSource(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Score"
-          className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
-          value={score}
-          onChange={e => setScore(e.target.value)}
-          min="0"
-        />
+        <Input kind='text' holder='Name *' value={name} setValue={setName} />
+        <Input kind='text' holder='Company *' value={company} setValue={setCompany} />
+        <Input kind='email' holder='Email *' value={email} setValue={setEmail} />
+        <Input kind='text' holder='Source' value={source} setValue={setSource} />
+        <Input kind='number' holder='Score' value={score} setValue={setScore} />
+
         <select
           className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
           value={status}
@@ -90,19 +62,15 @@ export default function NewLeadForm({ onAdd, onCancel }) {
       </div>
 
       <div className="flex justify-end mt-6 gap-3">
-        <button
-          onClick={onCancel}
-          className="px-5 py-2 text-green-700 border border-green-700 rounded hover:bg-green-100 transition"
-        >
-          Cancelar
-        </button>
-        <button
-          onClick={handleSubmit}
-          className="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 transition"
-        >
-          Add Lead
-        </button>
+        <Button label="Cancel" onClick={onCancel} kind='tertiary' />
+        <Button
+          label="Add Lead"onClick={handleSubmit} kind='primary'
+        />
       </div>
     </div>
   );
 }
+
+      
+
+

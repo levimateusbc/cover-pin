@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../button';
 
 export default function SearchFilterSort({ onSearch, onFilter, onSort, onCreateNewLead }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -38,18 +39,8 @@ export default function SearchFilterSort({ onSearch, onFilter, onSort, onCreateN
         <option value="converted">Converted</option>
         <option value="closed">Closed</option>
       </select>
-      <button
-        onClick={handleSort}
-        className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition"
-      >
-        Sort by Score ↓
-      </button>
-      <button
-        onClick={onCreateNewLead}
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition whitespace-nowrap"
-      >
-        Create New Lead
-      </button>
+      <Button label="Sort by Score ↓" onClick={handleSort} />
+      <Button label="+ Create New Lead" onClick={onCreateNewLead} />
     </div>
   );
 }

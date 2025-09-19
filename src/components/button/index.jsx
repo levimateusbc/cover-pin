@@ -1,10 +1,10 @@
-function Button({ onClick }) {
+function Button({ onClick,label,kind='primary' }) {
   return (
     <button
       onClick={onClick} // Aqui está o fix
-      className="bg-emerald-800 text-white w-[152px] h-[36.74px] rounded-[20px] px-[15px] py-[7px] opacity-100 text-base"
+      className= {` ${kind === 'primary' ? "bg-green-700 text-white  rounded hover:bg-green-800 transition" : kind === 'secondary' ? "bg-green-600 text-white  rounded hover:bg-green-700 transition" : kind === 'tertiary' ? " bg-gray-200 rounded hover:bg-gray-300 transition" : " bg-blue-600 text-white rounded hover:bg-blue-700 transition"}   rounded transition px-4 py-2 cursor-pointer`}
     >
-      + ADD LEAD
+      {label}
     </button>
   );
 }

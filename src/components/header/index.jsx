@@ -2,9 +2,7 @@ export default function Header({ currentView, setCurrentView }) {
   return (
     <header className="bg-green-900 shadow-md sticky top-0 z-50 pt-2 pb-2 mb-16">
       <div className="px-4 py-4 flex flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold text-white">
-          Mini Seller Console
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Mini Seller Console</h1>
 
         <nav className="flex gap-3">
           <button
@@ -26,7 +24,7 @@ export default function Header({ currentView, setCurrentView }) {
                 : "text-green-300 hover:bg-green-800 hover:text-white"
             }`}
           >
-            Oportunidades
+            Opportunities
           </button>
         </nav>
       </div>
