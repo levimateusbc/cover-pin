@@ -88,12 +88,12 @@ function App() {
   };
 
   const handleAddNewLead = (newLead) => {
-    setLeads((prev) => [...prev, newLead]);
+    setLeads((prev) => [...prev, { id: prev.length + 1, ...newLead }]);
     setCurrentView("leads");
   };
 
   return (
-    <div className="p-0 min-h-screen bg-neutralBg text-neutralText">
+    <div className="p-0 bg-neutralBg text-neutralText ">
       <Header currentView={currentView} setCurrentView={setCurrentView} />
 
       {loading && (
@@ -135,7 +135,6 @@ function App() {
 
       {currentView === "new-lead" && (
         <>
-        {/* TODO: Why doesn't change anything */}
           <Button label="Back" onClick={() => setCurrentView("leads")} />
           <NewLeadForm
             onAdd={handleAddNewLead}

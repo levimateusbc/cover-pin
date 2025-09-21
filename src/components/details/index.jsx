@@ -9,12 +9,14 @@ export default function LeadDetailPanel({ lead, onClose, onUpdate, onConvert }) 
   const [error, setError] = useState('');
 
   const handleSave = () => {
+
     if (!isValidEmail(email)) {
       setError('Invalid email address');
       return;
     }
     setError('');
     onUpdate({ ...lead, email, status });
+    onClose();
   };
 
   return (
