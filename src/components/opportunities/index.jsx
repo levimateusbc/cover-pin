@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function OpportunitiesTable({ opportunities }) {
   if (opportunities.length === 0) {
-    return <div className="p-4 text-center text-gray-500">Nenhuma oportunidade ainda.</div>;
+    return <div className="p-4 text-center text-gray-500">No opportunity yet.</div>;
   }
 
   return (

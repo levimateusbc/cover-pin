@@ -70,7 +70,7 @@ export default function Header({ currentView, setCurrentView }) {
           <button
             onClick={() => {
               setCurrentView("opportunities");
-              setIsMenuOpen(false); // close menu after click
+              setIsMenuOpen(false); 
             }}
             className={`cursor-pointer px-4 py-2 md:px-5 md:py-3 rounded font-semibold transition text-base md:text-lg ${
               currentView === "opportunities"

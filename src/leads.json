@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "João Silva",
-    "company": "Empresa A",
+    "company": "Company A",
     "email": "joao.silva@empresa.com",
     "source": "Web",
     "score": 75,
@@ -11,7 +11,7 @@
   {
     "id": "2",
     "name": "Maria Souza",
-    "company": "Empresa B",
+    "company": "Company B",
     "email": "maria.souza@empresa.com",
     "source": "Referral",
     "score": 90,
