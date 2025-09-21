@@ -35,9 +35,16 @@ export default function NewLeadForm({ onAdd, onCancel }) {
 
     onAdd(newLead);
   };
-
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onCancel();
+    }
+  };
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+    <div
+      className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center"
+      onClick={handleBackdropClick}
+    >
       <div className="bg-white p-6 rounded shadow font-sans max-w-3xl mx-auto  ">
         <h2 className="text-xl font-bold mb-6 text-green-900">New Lead</h2>
 
