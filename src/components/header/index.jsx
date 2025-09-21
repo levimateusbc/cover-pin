@@ -14,7 +14,7 @@ export default function Header({ currentView, setCurrentView }) {
         <div className="flex w-full md:w-auto justify-between items-center">
           <h1 className="text-2xl md:text-3xl font-bold text-white text-center md:text-left">
             <img
-              src="src/assets/logo.svg"
+              src="./assets/logo.svg"
               alt="Dashboard logo featuring a stylized green leaf with the word Dashboard in bold modern font, set against a clean white background, conveying a professional and welcoming tone"
             />
           </h1>
