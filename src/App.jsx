@@ -8,6 +8,7 @@ import NewLeadForm from "./components/form";
 import Header from "./components/header";
 import NewLeadFormModal from "./components/form";
 import Button from "./components/button";
+import Footer from "./components/footer";
 
 function App() {
   const [leads, setLeads] = useState([]);
@@ -152,6 +153,7 @@ function App() {
           onCancel={() => setIsModalOpen(false)}
         />
       )}
+      <Footer />
     </div>
   );
 }

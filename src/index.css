@@ -1,10 +1,9 @@
 @import "tailwindcss";
 @import "@fontsource/poppins";
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
 
 @tailwind utilities;
 
-@layer utilities {
-  .btn {
-    @apply bg-green-800 text-white font-semibold py-2 px-4 rounded;
-  }
+* {
+  font-family: "Figtree", sans-serif;
 }
