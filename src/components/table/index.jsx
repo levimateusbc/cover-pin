@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Table({ leads, onSelectLead }) {
   if (leads.length === 0) {
     return (
@@ -8,7 +6,7 @@ export default function Table({ leads, onSelectLead }) {
   }
 
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="overflow-x-auto w-full mb-8">
       <table className="min-w-[700px] w-full bg-white rounded shadow overflow-hidden font-sans">
         <thead className="bg-green-100 text-green-900">
           <tr>

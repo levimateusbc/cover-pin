@@ -1,20 +1,94 @@
-[
+  [
   {
     "id": "1",
-    "name": "João Silva",
+    "name": "Ethan Walker",
     "company": "Company A",
-    "email": "joao.silva@empresa.com",
+    "email": "ethan.walker@company.com",
     "source": "Web",
     "score": 75,
     "status": "new"
   },
   {
     "id": "2",
-    "name": "Maria Souza",
+    "name": "Olivia Martinez",
     "company": "Company B",
-    "email": "maria.souza@empresa.com",
+    "email": "olivia.martinez@company.com",
     "source": "Referral",
     "score": 90,
     "status": "contacted"
+  },
+  {
+    "id": "3",
+    "name": "Lucas Bennett",
+    "company": "Company C",
+    "email": "lucas.bennett@company.com",
+    "source": "linkedin",
+    "score": 85,
+    "status": "converted"
+  },
+  {
+    "id": "4",
+    "name": "Chloe Ramirez",
+    "company": "Company D",
+    "email": "chloe.ramirez@company.com",
+    "source": "Facebook",
+    "score": 80,
+    "status": "closed"
+  },
+  {
+    "id": "5",
+    "name": "Mason Hughes",
+    "company": "Company E",
+    "email": "mason.hughes@company.com",
+    "source": "Instagram",
+    "score": 70,
+    "status": "new"
+  },
+  {
+    "id": "6",
+    "name": "Sophia Clark",
+    "company": "Company F",
+    "email": "sophia.clark@empresa.com",
+    "source": "Web",
+    "score": 95,
+    "status": "contacted"
+  },
+  {
+    "id": "7",
+    "name": "Benjamin Scott",
+    "company": "Company G",
+    "email": "benjamin.scott@company.com",
+    "source": "Instagram",
+    "score": 88,
+    "status": "interviewed"
+  },
+  {
+    "id": "8",
+    "name": "Emma Brooks",
+    "company": "Company H",
+    "email": "emma.brooks@company.com",
+    "source": "linkedin",
+    "score": 92,
+    "status": "contacted"
+  },
+  {
+    "id": "9",
+    "name": "Noah Adams",
+    "company": "Company I",
+    "email": "noah.adams@company.com",
+    "source": "linkedin",
+    "score": 78,
+    "status": "new"
+  },
+  {
+    "id": "10",
+    "name": "Isabella Turner",
+    "company": "Company J",
+    "email": "isabella.turner@company.com",
+    "source": "Referral",
+    "score": 85,
+    "status": "contacted"
   }
 ]
+
+

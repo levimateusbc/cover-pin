@@ -1,4 +1,4 @@
-function Button({ onClick, label, kind = "primary", icon }) {
+export default function Button({ onClick, label, kind = "primary", icon }) {
   return (
     <button
       onClick={onClick}
@@ -20,4 +20,3 @@ function Button({ onClick, label, kind = "primary", icon }) {
   );
 }
 
-export default Button;

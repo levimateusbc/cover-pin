@@ -77,7 +77,7 @@ export default function LeadDetailPanel({
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600 "
+              className="w-full p-3 border border-green-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600 "
             >
               <option value="new">New</option>
               <option value="screening">Screening</option>
